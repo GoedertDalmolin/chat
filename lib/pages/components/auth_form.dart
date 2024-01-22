@@ -1,7 +1,26 @@
+import 'package:chat/models/auth_form_data.dart';
 import 'package:flutter/material.dart';
 
-class AuthForm extends StatelessWidget {
-  const AuthForm({super.key});
+class AuthForm extends StatefulWidget {
+  final Function(AuthFormData) onSubmited;
+
+  const AuthForm({super.key, required this.onSubmited});
+
+  @override
+  State<AuthForm> createState() => _AuthFormState();
+}
+
+class _AuthFormState extends State<AuthForm> {
+  final _formKey = GlobalKey<FormState>();
+  final _authFormData = AuthFormData();
+
+  _submit() {
+    final isValid = _formKey.currentState?.validate() ?? false;
+
+    if (!isValid) return;
+
+    widget.onSubmited(_authFormData);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,33 +29,87 @@ class AuthForm extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Nome',
+              if (_authFormData.isSignup)
+                TextFormField(
+                  initialValue: _authFormData.name,
+                  onChanged: (name) {
+                    _authFormData.name = name;
+                  },
+                  key: const ValueKey('name'),
+                  decoration: const InputDecoration(
+                    labelText: 'Nome',
+                  ),
+                  validator: (nameInput) {
+                    final name = nameInput ?? '';
+
+                    if (name.trim().length < 5) {
+                      return 'Nome deve ter no mínimo 5 caracteres';
+                    }
+
+                    return null;
+                  },
                 ),
-              ),
               TextFormField(
+                initialValue: _authFormData.email,
+                onChanged: (email) {
+                  _authFormData.email = email;
+                },
+                key: const ValueKey('email'),
                 decoration: const InputDecoration(
                   labelText: 'E-mail',
                 ),
+                validator: (emailInput) {
+                  final email = emailInput ?? '';
+
+                  if (!email.contains('@')) {
+                    return 'O e-mail informado não é valido!';
+                  }
+
+                  return null;
+                },
               ),
               TextFormField(
+                initialValue: _authFormData.password,
+                onChanged: (password) {
+                  _authFormData.password = password;
+                },
+                obscureText: true,
+                key: const ValueKey('password'),
                 decoration: const InputDecoration(
                   labelText: 'Senha',
                 ),
+                validator: (passwordInput) {
+                  final password = passwordInput ?? '';
+
+                  if (password.length < 5) {
+                    return 'A senha deve conter no minimo 5 caracteres!';
+                  }
+
+                  return null;
+                },
               ),
               const SizedBox(
                 height: 12,
               ),
               ElevatedButton(
-                onPressed: () {},
-                child: const Text('Entrar'),
+                style: ElevatedButton.styleFrom(elevation: 4),
+                onPressed: _submit,
+                child: Text(
+                  _authFormData.isLogin ? 'Entrar' : 'Cadastrar?',
+                ),
               ),
               TextButton(
-                onPressed: () {},
-                child: const Text('Criar uma nova conta?'),
+                onPressed: () {
+                  setState(() {
+                    _authFormData.toggleAuthMode();
+                  });
+                },
+                child: Text(
+                  _authFormData.isLogin ? 'Criar uma nova conta?' : 'Já possui uma conta?',
+                ),
               ),
             ],
           ),
