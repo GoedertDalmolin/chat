@@ -4,6 +4,13 @@ import 'package:chat/core/models/chat_user.dart';
 import 'package:chat/core/services/auth/auth_service.dart';
 
 class AuthMockService implements AuthService {
+  Map<String, ChatUser> _users = {};
+
+  AuthMockService._();
+
+  static final instance = AuthMockService._();
+
+
   @override
   // TODO: implement currentUser
   ChatUser? get currentUser => throw UnimplementedError();
