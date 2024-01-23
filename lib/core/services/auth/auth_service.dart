@@ -8,7 +8,7 @@ abstract class AuthService {
   Stream<ChatUser?> get userChanges;
 
   Future signup(
-    String nome,
+    String name,
     String email,
     String password,
     File image,

@@ -1,4 +1,4 @@
-import 'package:chat/pages/auth_page.dart';
+import 'package:chat/pages/initial_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const AuthPage(),
+      home: const InitialPage(),
     );
   }
 }

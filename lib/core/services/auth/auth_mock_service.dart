@@ -12,7 +12,7 @@ class AuthMockService implements AuthService {
 
   static final _userStream = Stream<ChatUser?>.multi((controller) {
     _controller = controller;
-    updateUser(null);
+    _updateUser(null);
   });
 
   @override
@@ -40,20 +40,20 @@ class AuthMockService implements AuthService {
     );
     _users.putIfAbsent(email, () => newUser);
 
-    updateUser(newUser);
+    _updateUser(newUser);
   }
 
   @override
   Future login(String email, String password) async {
-    updateUser(_users[email]);
+    _updateUser(_users[email]);
   }
 
   @override
   Future logout() async {
-    updateUser(null);
+    _updateUser(null);
   }
 
-  static updateUser(ChatUser? user) {
+  static _updateUser(ChatUser? user) {
     _currentUser = user;
     _controller!.add(user);
   }
