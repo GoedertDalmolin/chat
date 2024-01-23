@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:chat/models/auth_form_data.dart';
+import 'package:chat/pages/components/user_image_picker.dart';
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
@@ -14,10 +17,26 @@ class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
   final _authFormData = AuthFormData();
 
+  handleImagePick(File image) {
+    _authFormData.image = image;
+  }
+
+  _showError(String msg) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+      ),
+    );
+  }
+
   _submit() {
     final isValid = _formKey.currentState?.validate() ?? false;
 
     if (!isValid) return;
+
+    if (_authFormData.image == null && _authFormData.isSignup) {
+      return _showError('Imagem não Selecionada!!!');
+    }
 
     widget.onSubmited(_authFormData);
   }
@@ -32,6 +51,10 @@ class _AuthFormState extends State<AuthForm> {
           key: _formKey,
           child: Column(
             children: [
+              if (_authFormData.isSignup)
+                UserImagePicker(
+                  onImagePick: handleImagePick,
+                ),
               if (_authFormData.isSignup)
                 TextFormField(
                   initialValue: _authFormData.name,
