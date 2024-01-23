@@ -14,6 +14,8 @@ class _AuthPageState extends State<AuthPage> {
 
   handleSubmit(AuthFormData formData) async {
     try {
+
+
       setState(() => isLoading = true);
 
       if (formData.isLogin) {

@@ -30,6 +30,7 @@ class _AuthFormState extends State<AuthForm> {
   }
 
   _submit() {
+
     final isValid = _formKey.currentState?.validate() ?? false;
 
     if (!isValid) return;

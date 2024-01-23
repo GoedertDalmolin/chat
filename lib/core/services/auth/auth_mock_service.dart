@@ -1,39 +1,60 @@
 import 'dart:io';
+import 'dart:async';
+import 'dart:math';
 
 import 'package:chat/core/models/chat_user.dart';
 import 'package:chat/core/services/auth/auth_service.dart';
 
 class AuthMockService implements AuthService {
-  Map<String, ChatUser> _users = {};
+  static final Map<String, ChatUser> _users = {};
+  static ChatUser? _currentUser;
+  static MultiStreamController<ChatUser?>? _controller;
 
-  AuthMockService._();
-
-  static final instance = AuthMockService._();
-
+  static final _userStream = Stream<ChatUser?>.multi((controller) {
+    _controller = controller;
+    updateUser(null);
+  });
 
   @override
-  // TODO: implement currentUser
-  ChatUser? get currentUser => throw UnimplementedError();
+  Stream<ChatUser?> get userChanges {
+    return _userStream;
+  }
+
+  @override
+  ChatUser? get currentUser {
+    return _currentUser;
+  }
+
+  @override
+  Future signup(
+    String name,
+    String email,
+    String password,
+    File image,
+  ) async {
+    final newUser = ChatUser(
+      id: Random().nextDouble().toString(),
+      name: name,
+      email: email,
+      imageUrl: image.path,
+    );
+    _users.putIfAbsent(email, () => newUser);
+
+    updateUser(newUser);
+  }
 
   @override
   Future login(String email, String password) async {
-    // TODO: implement login
-    throw UnimplementedError();
+    updateUser(_users[email]);
   }
 
   @override
   Future logout() async {
-    // TODO: implement logout
-    throw UnimplementedError();
+    updateUser(null);
   }
 
-  @override
-  Future signup(String nome, String email, String password, File image) async {
-    // TODO: implement signup
-    throw UnimplementedError();
+  static updateUser(ChatUser? user) {
+    _currentUser = user;
+    _controller!.add(user);
   }
-
-  @override
-  // TODO: implement userChanges
-  Stream<ChatUser?> get userChanges => throw UnimplementedError();
 }
