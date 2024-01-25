@@ -39,6 +39,11 @@ class _NewMessageState extends State<NewMessage> {
               decoration: const InputDecoration(
                 labelText: 'Enviar Mensagem...',
               ),
+              onSubmitted: (_) {
+                if (_message.trim().isNotEmpty) {
+                  _sendMessage();
+                }
+              },
             ),
           ),
           IconButton(
