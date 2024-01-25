@@ -20,7 +20,7 @@ class ChatMockService implements ChatService {
       text: 'Bom dia Teremos reunião hj',
       createdAt: DateTime.now(),
       userId: '1234',
-      userName: 'Teste2',
+      userName: 'Ana',
       userImageUrl: 'assets/images/avatar.png',
     ),
     ChatMessage(

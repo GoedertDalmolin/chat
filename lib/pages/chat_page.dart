@@ -40,6 +40,7 @@ class _ChatPageState extends State<ChatPage> {
       ),
       body: const SafeArea(
         child: Column(
+          crossAxisAlignment:  CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Messages(),
