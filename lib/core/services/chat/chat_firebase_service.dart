@@ -10,11 +10,11 @@ class ChatFirebaseService implements ChatService {
   Stream<List<ChatMessage>> messagesStream() {
     final store = FirebaseFirestore.instance;
 
-    final snapshots = store.collection('chat').withConverter(fromFirestore: _fromFirestore, toFirestore: _toFirestore).snapshots();
+    final snapshots = store.collection('chat').withConverter(fromFirestore: _fromFirestore, toFirestore: _toFirestore).orderBy('createdAt', descending: true).snapshots();
 
     return Stream<List<ChatMessage>>.multi((controller) {
       snapshots.listen((snapshots) {
-        List<ChatMessage> lista = snapshots.docs.map((doc) => doc.data()).toList().reversed.toList();
+        List<ChatMessage> lista = snapshots.docs.map((doc) => doc.data()).toList();
 
         controller.add(lista);
       });
