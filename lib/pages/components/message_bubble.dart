@@ -41,7 +41,7 @@ class MessageBubble extends StatelessWidget {
             Container(
               width: 180,
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
+                color: const Color(0xFF313338) , //Theme.of(context).primaryColor
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(12),
                   topRight: const Radius.circular(12),
@@ -63,7 +63,7 @@ class MessageBubble extends StatelessWidget {
                   Text(
                     message.userName,
                     textAlign: TextAlign.start,
-                    style: TextStyle(color: belongsToCurrentUser ? Colors.black : Colors.blueAccent),
+                    style: TextStyle(color: belongsToCurrentUser ? Colors.lightGreenAccent : Colors.lightBlueAccent),
                   ),
                   Text(
                     message.text,
