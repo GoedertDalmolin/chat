@@ -32,7 +32,7 @@ Este app tem as seguintes funcionalidades:
 ## 👁️ Pré-visualização
 
 <h1 align="center">
-<img src='.github/1.gif' width="35%">
+<img src='.github/1.gif' width="30%">
 </h1>
 
 <h1 align="center">
