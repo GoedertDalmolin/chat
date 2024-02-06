@@ -35,6 +35,11 @@ Este app tem as seguintes funcionalidades:
 <img src='.github/1.gif' width="35%">
 </h1>
 
+<h1 align="center">
+<img src='.github/1.png' width="30%">
+<img src='.github/2.png' width="30%">
+<img src='.github/3.png' width="30%">
+</h1>
 
 ---
 ## 🧪 Tecnologias
