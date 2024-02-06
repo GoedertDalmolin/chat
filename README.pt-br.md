@@ -14,22 +14,22 @@
 </div>
 
 ---
-## ℹ️ About this repository
-Chat application written in Flutter with integration with Firebase Cloud Messaging.
+## ℹ️ Sobre este repositório
+Aplicativo Chat escrito no Flutter com integração ao Firebase Cloud Messsaging.
 
-This repository's main objective is to demonstrate the application developed to train my knowledge during the Flutter course from the company [COD3R](https://www.udemy.com/course/curso-flutter/).
-
----
-## ⚙️ Features
-This app has following features:
-
-- User registration..
-- User Login.
-- Firebase Integration.
-- Notification from Firebase Cloud Messaging.
+O objetivo principal deste repositório é demonstrar o aplicativo desenvolvido para treinar meus conhecimentos durante o curso de Flutter da empresa [COD3R](https://www.udemy.com/course/curso-flutter/).
 
 ---
-## 👁️ Preview
+## ⚙️ Funcionalidades
+Este app tem as seguintes funcionalidades:
+
+- Cadastro de Usuário.
+- Login de Usuário.
+- Integração com Firebase.
+- Notificação a partir do Cloud Messaging do Firebase.
+
+---
+## 👁️ Pré-visualização
 
 <h1 align="center">
 <img src='.github/1.gif' width="30%">
@@ -42,8 +42,8 @@ This app has following features:
 </h1>
 
 ---
-## 🧪 Technologies
-This project was developed using the following technologies:
+## 🧪 Tecnologias
+Este projeto foi desenvolvido usando as seguintes tecnologias:
 
 - [Flutter 3.16.9](https://docs.flutter.dev/)
 - [Dart 3.2.6](https://dart.dev/)
@@ -56,17 +56,17 @@ This project was developed using the following technologies:
 - [firebase_messaging](https://pub.dev/packages/firebase_messaging)
 
 ---
-## ⚡ Installing
+## ⚡ Instalação
 
-Clone this project using:
+Primeiramente clone este projeto usando:
 
 ```bash
   git clone https://github.com/GoedertDalmolin/chat.git
   cd chat
 ```
 
-Finally compile and run the project.
+Por fim compile e execute o projeto.
 
 ---
-</> Developed by [GoedertDalmolin](https://github.com/GoedertDalmolin) 👋
+</> Desenvolvido por [GoedertDalmolin](https://github.com/GoedertDalmolin) 👋
 ---
